@@ -2,6 +2,7 @@ package com.example.giphy
 
 import DataAdapter
 import android.app.DownloadManager
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(),DataAdapter.OnitemClickListener {
         setContentView(R.layout.activity_main)
 
         recyclerView.layoutManager= GridLayoutManager(this,2)
+        recyclerView.addItemDecoration(SpaceItemDecoration(10))
         recyclerView.setHasFixedSize(true)
 
         modelList= ArrayList<DataModel>()
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity(),DataAdapter.OnitemClickListener {
                 }
 
                 adapter = DataAdapter(this,modelList)
+                adapter.setOnItemClickListener(this)
                 recyclerView.adapter= adapter
                 adapter.notifyDataSetChanged()
 
@@ -75,6 +78,11 @@ class MainActivity : AppCompatActivity(),DataAdapter.OnitemClickListener {
     }
 
     override fun onItemClick(pos: Int) {
-       // TODO("Not yet implemented")
+
+       val fullViewIntent= Intent(this,FullImageActivity::class.java)
+        val clickedItem= modelList[pos]
+        fullViewIntent.putExtra("imageUrl",clickedItem.imageUrl)
+        startActivity(fullViewIntent)
+
     }
 }
