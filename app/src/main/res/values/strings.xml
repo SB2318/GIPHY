@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GIPHY</string>
+    <string name="api_key">Kx9qJ5zokJFEMaTzFEYVWeV3aWEWxNxT</string>
+    <string name="base_url">https://api.giphy.com/v1/gifs/trending?api_key=</string>
+</resources>
